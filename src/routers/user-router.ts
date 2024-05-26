@@ -1,15 +1,14 @@
 import { Router } from "express";
-import jwt from "jsonwebtoken";
+import { UserModel } from "../models/Users/user-model";
 import { checkToken } from "../middlewares/checkToken";
-import { UserModel } from "../models/Users/user-model"; 
+import jwt from "jsonwebtoken";
 
 export const userRouter = Router();
 
 userRouter.get("/me", checkToken, async (req, res) => {
     try {
-        const decoded = jwt.decode(req.token!) as any; // Remplacez 'any' par votre type de décodage si nécessaire
-        const user = await UserModel.findById(decoded.id).select('-password'); // Exclure le mot de passe du résultat
-
+        const decoded = jwt.decode(req.token!) as any;
+        const user = await UserModel.findById(decoded.id).select('-password');
         if (user) {
             res.json(user);
         } else {

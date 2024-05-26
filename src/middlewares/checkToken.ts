@@ -1,20 +1,16 @@
-import "dotenv/config";
-import jwt from "jsonwebtoken";
-import { Request, Response, NextFunction } from 'express';
+import { NextFunction, Request, Response } from 'express';
+
+import jwt from 'jsonwebtoken';
 
 export interface DecodeToken {
-    id: number;
+    id: string;
     username: string;
     email: string;
     iat: number;
     exp: number;
 }
-interface CustomRequest extends Request {
-    token?: string;
-    user?: DecodeToken;
-}
 
-export async function checkToken(req: CustomRequest, res: Response, next: NextFunction) {
+export async function checkToken(req: Request, res: Response, next: NextFunction) {
     const fullToken = req.headers.authorization;
 
     if (!fullToken) {
@@ -27,10 +23,9 @@ export async function checkToken(req: CustomRequest, res: Response, next: NextFu
     }
 
     try {
-
         const decoded = jwt.verify(token, process.env.JWT_SECRET!) as DecodeToken;
         req.token = token;
-        req.user = decoded; 
+        req.user = decoded;
         next();
     } catch (error) {
         console.error('Error verifying token:', error);

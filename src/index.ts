@@ -1,27 +1,31 @@
-import "dotenv/config";
-import express from "express";
-import cors from "cors";
-import bodyParser from "body-parser";
-import mongoose from "mongoose";
+import { authRouter } from './routers/auth-router';
+import bodyParser from 'body-parser';
+import { categoryFaqRouter } from './routers/category-faq.router';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import express from 'express';
+import { faqRouter } from './routers/faq-router';
+import mongoose from 'mongoose';
+import { userRouter } from './routers/user-router';
 
-import { authRouter } from "./router/auth-router";
-import { userRouter } from "./router/user-router";
-
-
-// mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connection.on('error', console.error.bind(console, 'Erreur de connexion MongoDB:'));
+dotenv.config();
 
 const app = express();
+const port = process.env.PORT || 1337;
+
+mongoose.connect(process.env.MONGO_URI!)
+    .then(() => console.log('MongoDB connected'))
+    .catch(err => console.error('MongoDB connection error:', err));
+
 app.use(cors());
 app.use(bodyParser.json());
 
-// Configuration des routeurs
-const apiRouter = express.Router();
-apiRouter.use('/auth', authRouter);
-apiRouter.use('/users', userRouter);
+app.use('/auth', authRouter);
+app.use('/users', userRouter);
+app.use('/faq', faqRouter)
+app.use('/category', categoryFaqRouter);
 
-app.use("/api", apiRouter);
 
-app.listen(process.env.PORT, () => {
-  console.log(`Serveur lancé sur le port ${process.env.PORT}!`)
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
 });

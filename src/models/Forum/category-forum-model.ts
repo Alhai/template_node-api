@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-export interface IUser {
+export interface ICategoryForum {
     username: string;
     password: string | undefined;
     email: string;
@@ -8,7 +8,7 @@ export interface IUser {
     avatar : string;
 }
 
-const userSchema = new mongoose.Schema<IUser>({
+const categoryForumSchema = new mongoose.Schema<ICategoryForum>({
     username: { type: String, required: true },
     password: { type: String, required: true },
     email: { type: String, required: true },
@@ -16,4 +16,4 @@ const userSchema = new mongoose.Schema<IUser>({
     avatar: { type: String }
 });
 
-export const UserModel = mongoose.model<IUser>('User', userSchema);
+export const CategoryForumCollection = mongoose.model<ICategoryForum>('categoryForum', categoryForumSchema);
