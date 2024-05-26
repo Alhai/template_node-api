@@ -11,21 +11,26 @@ import { userRouter } from './routers/user-router';
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 1337;
+const port = parseInt(process.env.PORT || '3000', 10); // Assurez-vous que `port` est un nombre
 
-mongoose.connect(process.env.MONGO_URI!)
-    .then(() => console.log('MongoDB connected'))
-    .catch(err => console.error('MongoDB connection error:', err));
+mongoose.connect(process.env.MONGO_URI!, {})
+    .then(() => {
+        console.log('MongoDB connected');
+        app.listen(port, '0.0.0.0', () => {
+            console.log(`Server running on port ${port}`);
+        });
+    }).catch((error) => {
+        console.error('MongoDB connection error:', error);
+    });
 
 app.use(cors());
 app.use(bodyParser.json());
-
 app.use('/auth', authRouter);
 app.use('/users', userRouter);
-app.use('/faq', faqRouter)
+app.use('/faq', faqRouter);
 app.use('/category', categoryFaqRouter);
 
-
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+// Route de test
+app.get('/', (req, res) => {
+    res.send('Server is running');
 });
