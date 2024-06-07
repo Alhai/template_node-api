@@ -29,4 +29,5 @@ app.use(body_parser_1.default.json());
 app.use('/auth', auth_router_1.authRouter);
 app.use('/users', user_router_1.userRouter);
 app.use('/faq', faq_router_1.faqRouter);
+app.use('/faq', faq_router_1.faqRouter);
 app.use('/category', category_faq_router_1.categoryFaqRouter);
