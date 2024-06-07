@@ -22,7 +22,4 @@ export class FaqDal {
         return await FaqModel.findByIdAndDelete(id);
     }
     
-    async getFaqsByCategoryId(categoryId: string): Promise<IFaq[]> {
-        return await FaqModel.find({ category: categoryId }).populate('category');
-    }
 }

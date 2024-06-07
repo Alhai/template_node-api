@@ -1,5 +1,4 @@
-import { DecodeToken } from '../../middlewares/checkToken'; // Assurez-vous que le chemin est correct
-
+import { DecodeToken } from '../../middlewares/checkToken'; 
 declare global {
   namespace Express {
     interface Request {

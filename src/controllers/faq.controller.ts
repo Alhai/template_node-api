@@ -20,21 +20,21 @@ export class FaqController {
         }
     }
 
-    async findFaqsByCategoryId(req: Request, res: Response) {
-        try {
-            // Utiliser une assertion de type pour dire à TypeScript que c'est une chaîne
-            const categoryId = req.query.category as string;
+    // async findFaqsByCategoryId(req: Request, res: Response) {
+    //     try {
+    //         // Utiliser une assertion de type pour dire à TypeScript que c'est une chaîne
+    //         const categoryId = req.query.category as string;
     
-            const faqs = await this.faqService.getFaqsByCategoryId(categoryId);
-            if (faqs.length > 0) {
-                res.json(faqs);
-            } else {
-                res.status(404).send('No FAQs found for this category');
-            }
-        } catch (error) {
-            res.status(500).send(error || 'Internal server error');
-        }
-    }
+    //         const faqs = await this.faqService.getFaqsByCategoryId(categoryId);
+    //         if (faqs.length > 0) {
+    //             res.json(faqs);
+    //         } else {
+    //             res.status(404).send('No FAQs found for this category');
+    //         }
+    //     } catch (error) {
+    //         res.status(500).send(error || 'Internal server error');
+    //     }
+    // }
     
     
 

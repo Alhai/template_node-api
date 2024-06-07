@@ -14,4 +14,3 @@ router.get('/:id', (req, res) => faqController.findFaqById(req, res));
 router.post('/', (req, res) => faqController.createFaqItem(req, res));
 router.put('/:id', (req, res) => faqController.updateFaqItemById(req, res));
 router.delete('/:id', (req, res) => faqController.deleteFaqItemById(req, res));
-router.get('/category/:id', (req, res) => faqController.findFaqsByCategoryId(req, res));

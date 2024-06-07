@@ -1,10 +1,15 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
+
+import { IFaq } from '../Faq/faq-model';
 
 export interface ICategoryFaq {
-    _id: string | null
+  _id: Schema.Types.ObjectId;
   name: string;
 }
 
+export interface ICategoryItemModel extends ICategoryFaq, Document {
+  _id: Schema.Types.ObjectId;
+}
 const categoryFaqSchema = new mongoose.Schema<ICategoryFaq>({
   name: { type: String, required: true },
 });

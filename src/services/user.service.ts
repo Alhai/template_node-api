@@ -1,7 +1,5 @@
 import { IUser, UserModel } from "../models/Users/user-model";
 
-import { UserDal } from "../dals/user.dal";
-
 export class UserService {
     async findAllUsers(): Promise<IUser[]> {
         return await UserModel.find();

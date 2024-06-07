@@ -27,7 +27,7 @@ export class FaqService {
     async deleteFaqItemById(id: string): Promise<IFaq | null> {
         return await this.faqDal.deleteFaqItemById(id);
     }
-    async getFaqsByCategoryId(categoryId: string): Promise<IFaq[]> {
-        return await this.faqDal.getFaqsByCategoryId(categoryId)
-    }
+    // async getFaqsByCategoryId(categoryId: string): Promise<IFaq[]> {
+    //     return await this.faqDal.getFaqsByCategoryId(categoryId)
+    // }
 }
