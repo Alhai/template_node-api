@@ -14,7 +14,7 @@ const user_router_1 = require("./routers/user-router");
 dotenv_1.default.config();
 var cors = require('cors');
 const app = (0, express_1.default)();
-const port = Number(process.env.PORT) || 1337;
+const port = Number(process.env.PORT) || 3000;
 mongoose_1.default.connect(process.env.MONGO_URI)
     .then(() => {
     console.log('MongoDB connected');
