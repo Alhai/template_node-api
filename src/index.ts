@@ -10,7 +10,7 @@ import { userRouter } from './routers/user-router';
 dotenv.config();
 var cors = require('cors')
 const app = express();
-const port = Number(process.env.PORT) || 1337;
+const port = Number(process.env.PORT) || 3000;
 
 mongoose.connect(process.env.MONGO_URI!)
   .then(() => {
